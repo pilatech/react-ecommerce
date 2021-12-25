@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import { Fragment } from 'react'
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import ProductList from './components/ProductsList'
+import Navbar from './components/Navbar'
+import Cart from './components/Cart'
+import Default from './components/Default'
+import Details from './components/Details'
+import { Route, Routes } from 'react-router-dom'
+import Modal from './components/Modal';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <Fragment>
+    <Navbar/>
+    <Routes>
+     <Route>
+       <Route index element={<ProductList/>} />
+       <Route path="cart" element={<Cart/>}/>
+       <Route path="details" element={<Details/>} />
+       <Route path="*" element={<Default/>}/>
+     </Route>
+    </Routes>
+    <Modal/>
+  </Fragment>
   );
 }
 
